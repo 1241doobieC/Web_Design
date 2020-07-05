@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>
+			 
+		</title>
+
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+		<!-- imgbox -->
+		<style>
+			/* 相框 */
+			/* 設高度會導致圖片拉長，所以不設高度 */
+			.logo{
+				width: 260px;
+				 /*height: 420px; */
+				background-color: #9EF12E;
+
+				margin-top: 0;
+				margin-bottom: 0;
+				margin-left: auto;
+				margin-right: auto;
+
+				box-shadow: 5px 3px 3px 3px lightgreen;
+				border-radius: 30px;
+			}
+
+			.product_img{
+				width: 260px;
+				height: 240px;
+				/* background-color: #9DC0D3; */
+				margin-top: 0;
+				margin-bottom: 0;
+				margin-left: auto;
+				margin-right: auto;
+
+				box-shadow: 3px 3px 3px 3px #5E5F5F;
+				border-radius: 25px;
+			}
+			.box{
+				width: 260px;
+				height: 240px;
+				margin-top: 0;
+				margin-bottom: 0;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.textView{
+				font-size:18px;
+				font-style:Bahnschrift;
+				font-weight:bold;
+				color: #877AFD;
+				text-align:center;
+			}
+			.textViewSub{
+				font-size:16px;
+				font-style:Bahnschrift;
+				font-weight:bold;
+				color: #E71C2B;
+				text-align:center;
+			}
+		</style>
+
+		<script>
+			$(function(){
+				$("#pre").bind("click", showpre); //上一筆
+				$("#next").bind("click", shownext); //下筆
+			})
+			//-----------
+			var num=0; //第幾個
+			var imgSrc, bookN, textSub; //圖檔入徑、書籍名稱、內文名稱
+			var aryImg= new Array("pic01.jpg","pic02.jpg","pic03.jpg", "pic04.jpg"); //圖片名
+			var aryBook= new Array("梵諦岡","新天鵝城堡","聖米歇爾山","藍紹教堂"); //書名
+			var textContent= new Array(
+				"梵諦岡為天主教會最高權力機構聖座的所在地、天主教會最高領袖教宗的駐地、世界六分之一人口的信仰中心，亦為世界領土面積最小的國家。",
+
+				"新天鵝城堡（德語：Schloß Neuschwanstein,) 是19世紀晚期的建築，位於今天的德國巴伐利亞西南方，鄰近年代較早的高天鵝城堡，距離菲森鎮約4公里，離德國與奧地利邊界不遠。",
+
+				"聖米歇爾山是法國諾曼第附近，距海岸約1公里的岩石小島，為法國旅遊勝地，也是天主教徒的朝聖地，山頂建有著名的聖彌額爾山隱修院。聖彌額爾山及其海灣於1979年被聯合國教科文組織列為世界遺產。",
+
+				"位於貝希特斯加登（Berchtesgaden）附近的藍紹（Ramsau）是德國阿爾卑斯山區的小鎮，除了是附近山區的登山入口小鎮，藍紹教堂搭配阿爾卑斯群山明信片般的夢幻景色也讓它成了旅人到貝希特斯加登跟國王湖旅行時的必去景點。"
+				);
+			//-----------
+			$(function(){
+				setInterval(picChanged,2000);
+			});
+
+			function picChanged(){
+				num++;
+				if (num>3) {num=0}
+					imgSrc="images/"+ aryImg[num];
+					textSub= textContent[num];
+					bookN= aryBook[num]; //書名
+					$("#preText").text(bookN);
+					$("#pro_content").text(textSub);
+					$("#preImg").attr("src",imgSrc);
+			}
+			function showpre(){
+				num--;
+				if(num<0) num=3; //循環三張圖片
+
+				imgSrc="images/"+ aryImg[num]; //圖片路徑
+				bookN= aryBook[num]; //書名
+
+				$("#preImg").attr("src", imgSrc);
+				$("#preText").text(bookN);
+			}
+
+			function shownext(){
+				num++;
+				if(num>2) num=3;
+
+				imgSrc="images/"+ aryImg[num];
+				bookN= aryBook[num];
+
+				$("#preImg").attr("src", imgSrc);  //src=default畫面
+				$("#preText").text(bookN);
+			}
+		</script>
+		
+
+</head>
+<body>
+
+	<!-- home Page -->
+	<div data-role="page" id="home" >
+
+		<div data-role="header" data-theme="b">
+			<h1 style="color:yellow">
+				小杜旅遊網簡介
+			</h1>
+		</div>
+
+		<div role="main" class="ui-content">
+			
+			
+
+			<div class="logo">
+				<p><img src="images/travelHSU.jpg" width="100%" height="100%"></p>
+				
+			</div>
+			<span style="font-size: 18px; color:navy; ">
+					小杜旅行社股份有限公司，成立於1995年11月24日，以雄獅旅遊為品牌名稱，董事長為許杜比先生。小杜旅遊提供國內外團體旅遊、國內外自由行、國內外訂房、訂票、票券當地遊等服務，在美洲、大洋洲、亞洲、歐洲全球各地共103個實體服務據點，其中包含17個海外據點。
+				</span>
+			<div class="ui-grid-a">
+				<div class="ui-block-a"><a href="#" data-role="button" style="background-color:#2694F1;color: white">小杜</a></div>
+				<div class="ui-block-b"><a href="#" data-role="button" style="background-color:#2694F1;color: white">Support</a></div>
+			</div>
+		</div>
+
+		<div data-role="footer" data-theme="b" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" data-role="button" data-icon="home" class="ui-btn-active">Home</a></li>
+					<li><a href="#product" data-role="button" data-icon="info">New Product</a></li>
+					<li><a href="#about" data-role="button" data-icon="search">About</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>	
+
+	<!-- product page -->
+	<div data-role="page" id="product">
+	
+		<div data-role="header" data-theme="b">
+			<h1>Product</h1>
+			<a href="#" data-role="button" data-icon="arrow-l" style="background-color:#2694F1;" id="pre">上張圖片</a>
+			<a href="#" data-role="button" data-icon="arrow-r" style="background-color: #2694F1;" id="next">下張圖片</a>
+		</div>
+	
+		<div role="main" class="ui-content">
+
+			<div >
+				
+				<div class="box">
+					<a href="https://tw.bring-you.info/ramsau-hintersee" id="url01"><img src="images/pic01.jpg" name=""  width="100%" height="240px" class="product_img" id="preImg"></a>
+					</div>
+				<p class="textView" id="preText">
+					梵諦岡
+					</p>
+				<br>
+				<p class="textViewSub" id="pro_content">
+					梵諦岡為天主教會最高權力機構聖座的所在地、天主教會最高領袖教宗的駐地、世界六分之一人口的信仰中心，亦為世界領土面積最小的國家。
+					</p>
+			</div>
+			 
+		</div>
+	
+		<div data-role="footer" data-theme="b" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" data-role="button" data-icon="home" >Home</a></li>
+					<li><a href="#product" data-role="button" data-icon="info" class="ui-btn-active">New Product</a></li>
+					<li><a href="#about" data-role="button" data-icon="search">About</a></li>
+				</ul>
+			</div>
+		</div>
+	
+	</div>	
+</body>
+</html>
